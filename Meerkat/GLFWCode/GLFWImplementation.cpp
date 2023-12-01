@@ -11,7 +11,7 @@ namespace mk {
 	}
 	void GLFWImplementation::Create(const std::string& name, int width, int height)
 	{
-		mWindow = glfwCreateWindow(800, 600, "Game_IS", NULL, NULL);
+		mWindow = glfwCreateWindow(width, height, "Game_IS", NULL, NULL);
 	}
 	int GLFWImplementation::GetHeight() const
 	{

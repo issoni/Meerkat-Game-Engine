@@ -6,7 +6,7 @@ class MyGame : public mk::MeerkatApp<MyGame> {
 public:
 	virtual void OnUpdate() override
 	{
-		std::cout << "Meerkat running" << std::endl; 
+		//std::cout << "Meerkat running" << std::endl; 
 	}
 };
 
