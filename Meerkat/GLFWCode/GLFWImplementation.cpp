@@ -13,6 +13,7 @@ namespace mk {
 	void GLFWImplementation::Create(const std::string& name, int width, int height)
 	{
 		mWindow = glfwCreateWindow(width, height, "Game_IS", NULL, NULL);
+
 		if (mWindow == NULL) {
 			MK_ERROR("Failed to create GLFW Window");
 			glfwTerminate();
