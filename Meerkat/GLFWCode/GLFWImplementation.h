@@ -16,7 +16,7 @@ namespace mk {
 
 		virtual void SetKeyPressedCallback(std::function<void(const KeyPressed&)>& callbackFunc) override;
 		virtual void SetKeyReleasedCallback(std::function<void(const KeyReleased&)>& callbackFunc) override;
-		virtual void SetWindowCloseCallback(std::function<void()>& callBackFunc) override;
+		virtual void SetWindowCloseCallback(std::function<void()>& callbackFunc) override;
 
 	private:
 		struct Callbacks {

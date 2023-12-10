@@ -72,8 +72,8 @@ namespace mk {
 	{
 		mCallbacks.keyReleasedFunc = callbackFunc;
 	}
-	void GLFWImplementation::SetWindowCloseCallback(std::function<void()>& callBackFunc)
+	void GLFWImplementation::SetWindowCloseCallback(std::function<void()>& callbackFunc)
 	{
-		mCallbacks.windowCloseFunc = callBackFunc;
+		mCallbacks.windowCloseFunc = callbackFunc;
 	}
 }
