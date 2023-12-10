@@ -13,6 +13,8 @@
 namespace mk {
 	OpenGLPicture::OpenGLPicture(const std::string& file)
 	{
+		glGenTextures(1, &mTex);
+
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
@@ -31,6 +33,8 @@ namespace mk {
 
 	OpenGLPicture::OpenGLPicture(std::string&& file)
 	{
+		glGenTextures(1, &mTex);
+
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
@@ -54,7 +58,6 @@ namespace mk {
 
 	void OpenGLPicture::Bind()
 	{
-		glGenTextures(1, &mTex);
 		glBindTexture(GL_TEXTURE_2D, mTex); 
 	}
 
