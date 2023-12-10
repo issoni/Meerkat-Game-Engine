@@ -3,7 +3,7 @@
 #include"Utilities.h"
 #include"Meerkat.h"
 #include"Shader.h"
-// #include"Picture.h"
+#include"Picture.h"
 #include"Renderer.h"
 
 namespace mk {
@@ -136,7 +136,7 @@ namespace mk {
 
 			OnUpdate();
 
-			std::this_thread::sleep_until(mNextFrame);
+			std::this_thread::sleep_until(mNextFrameTime);
 			mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 
 			mWindow.SwapBuffers();
@@ -173,7 +173,7 @@ namespace mk {
 	template<typename T>
 	void MeerkatApp<T>::SetWindowCloseCallback(std::function<void()> callBackFunc)
 	{
-		mWindow.SetWindowCloseCallback(callbackFunc);
+		mWindow.SetWindowCloseCallback(callBackFunc);
 	}
 
 	template<typename T>

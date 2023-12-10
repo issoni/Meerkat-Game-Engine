@@ -8,13 +8,14 @@
 namespace mk {
 	class MEERKAT_API Picture {
 	public:
-		Picture();
+		Picture(const std::string& file);
+		Picture(std::string&& file);
 
 		void Bind(); 
 
-		void GetHeight();
+		int GetHeight() const;
 
-		void GetWidth();
+		int GetWidth() const;
 	private:
 		std::unique_ptr<PictureImplementation> mImplementation;
 	};
