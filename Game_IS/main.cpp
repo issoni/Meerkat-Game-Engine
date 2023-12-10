@@ -12,6 +12,7 @@ public:
 	{
 		//std::cout << "Meerkat running" << std::endl; 
 		Draw(x, y, mPic);
+		mPic.Bind();
 		//Draw(mUnit);
 	}
 

@@ -125,6 +125,8 @@ namespace mk {
 	void MeerkatApp<T>::Run()
 	{
 		mk::Shader shader{ "../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl" };
+		// mk::Picture mPic{ "../Assets/Pictures/test.png" };
+
 
 		mNextFrameTime = std::chrono::steady_clock::now();
 
@@ -133,6 +135,7 @@ namespace mk {
 
 			shader.Bind();
 			shader.SetUniform2Ints("ScreenSize", mWindow.GetWidth(), mWindow.GetHeight());
+			// mPic.Bind();
 
 			OnUpdate();
 
