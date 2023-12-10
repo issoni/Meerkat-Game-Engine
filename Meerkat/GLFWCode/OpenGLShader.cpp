@@ -10,14 +10,18 @@
 namespace mk {
 	OpenGLShader::OpenGLShader(const std::string& vertexSF, const std::string& fragmentSF)
 	{
+		// might have to remove this
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			MK_ERROR("Failed to initialize GLAD");
-			return; 
+			return;
 		}
+
 		std::string vertexString{ ReadWholeFile(vertexSF) };
 		const char* vertexShaderSource = vertexString.c_str();
 		std::string fragmentString{ ReadWholeFile(fragmentSF) };
 		const char* fragmentShaderSource = fragmentString.c_str();
+
+
 
 		unsigned int vertexShader; 
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -42,7 +46,7 @@ namespace mk {
 			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
 			MK_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog);
 		}
-
+		
 		mShaderProgram = glCreateProgram();
 		glAttachShader(mShaderProgram, vertexShader);
 		glAttachShader(mShaderProgram, fragmentShader);
@@ -137,6 +141,8 @@ namespace mk {
 
 		while (inputFile) {
 			std::getline(inputFile, nextLine);
+			if (!inputFile)
+				break;
 			result += nextLine; 
 			result += "\n";
 		}
@@ -152,6 +158,8 @@ namespace mk {
 
 		while (inputFile) {
 			std::getline(inputFile, nextLine);
+			if (!inputFile)
+				break;
 			result += nextLine;
 			result += "\n";
 		}

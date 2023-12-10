@@ -1,17 +1,18 @@
 #include"pch.h"
 #include "MeerkatApp.h"
 #include"Utilities.h"
-
-#include"../glad/include/glad/glad.h"
-#include"../glfw/include/GLFW/glfw3.h"
-#include"../stbi/stb_image.h"
-
+#include"Meerkat.h"
 #include"Shader.h"
+// #include"Picture.h"
+#include"Renderer.h"
 
 namespace mk {
 	template<typename T> 
 	MeerkatApp<T>::MeerkatApp()
 	{
+		mWindow.Create("Game IS", 1000, 800);
+		mRenderer.Init();
+		SetWindowCloseCallback([this]() {DefaultWindowCloseHandler(); });
 	}
 
 	template<typename T>
@@ -26,7 +27,9 @@ namespace mk {
 	{
 		sInstance->Run(); 
 	}
+	
 
+	/*
 	template<typename T>
 	void MeerkatApp<T>::Run()
 	{
@@ -38,10 +41,10 @@ namespace mk {
 		}
 
 		float vertices[] = {
-			-0.5f, -0.5f, 0.0f, 0.0f,
-			 0.5f, -0.5f, 1.0f, 0.0f,
-			-0.5f,  0.5f, 0.0f, 1.0f,
-			 0.5f,  0.5f, 1.0f, 1.0f
+			100.f, 100.f, 0.0f, 0.0f,
+			300.f, 100.f, 1.0f, 0.0f,
+			100.f, 300.f, 0.0f, 1.0f,
+			300.f, 300.f, 1.0f, 1.0f
 		};
 
 		unsigned int indices[] = {
@@ -73,12 +76,13 @@ namespace mk {
 
 		mk::Shader shader{ "../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl" };
 		shader.SetUniform2Ints("ScreenSize", 1000, 800);
-
+		
 		/////////////// Textures ////////////////
-
+		//mk::Picture pic{ "..." };
+		// pic class
 		unsigned int texture;
 		glGenTextures(1, &texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindTexture(GL_TEXTURE_2D, texture); // should be part of pic class bind method? check 11-30 41:33
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -94,7 +98,7 @@ namespace mk {
 			MK_ERROR("Failed to load a picture from the file!");
 		}
 		stbi_image_free(data);
-
+		// pic class
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -105,6 +109,7 @@ namespace mk {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			shader.Bind(); 
+			//pic.Bind();
 
 			glBindVertexArray(VAO);
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -114,9 +119,67 @@ namespace mk {
 		}
 
 	}
+	*/
+	
+	template<typename T>
+	void MeerkatApp<T>::Run()
+	{
+		mk::Shader shader{ "../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl" };
+
+		mNextFrameTime = std::chrono::steady_clock::now();
+
+		while (mShouldContinue) {
+			mRenderer.Clear();
+
+			shader.Bind();
+			shader.SetUniform2Ints("ScreenSize", mWindow.GetWidth(), mWindow.GetHeight());
+
+			OnUpdate();
+
+			std::this_thread::sleep_until(mNextFrame);
+			mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
+
+			mWindow.SwapBuffers();
+			mWindow.PollEvents();
+		}
+	}
+
 
 	template<typename T>
 	void MeerkatApp<T>::OnUpdate() {
 
 	}
+
+	
+	
+	template<typename T>
+	void MeerkatApp<T>::Draw(int x, int y, Picture& pic) {
+		mRenderer.Draw(x, y, pic);
+	}
+	
+
+	template<typename T>
+	void MeerkatApp<T>::SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc)
+	{
+		mWindow.SetKeyPressedCallback(callbackFunc);
+	}
+
+	template<typename T>
+	void MeerkatApp<T>::SetKeyReleasedCallback(std::function<void(const KeyReleased&)> callbackFunc)
+	{
+		mWindow.SetKeyReleasedCallback(callbackFunc);
+	}
+
+	template<typename T>
+	void MeerkatApp<T>::SetWindowCloseCallback(std::function<void()> callBackFunc)
+	{
+		mWindow.SetWindowCloseCallback(callbackFunc);
+	}
+
+	template<typename T>
+	void MeerkatApp<T>::DefaultWindowCloseHandler()
+	{
+		mShouldContinue = false; 
+	}
+
 }

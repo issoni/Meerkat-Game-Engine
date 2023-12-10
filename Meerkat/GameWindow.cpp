@@ -1,4 +1,5 @@
 #include"pch.h"
+
 #include"GameWindow.h"
 #include "GLFWCode/GLFWImplementation.h"
 
@@ -32,5 +33,17 @@ namespace mk {
 	void GameWindow::PollEvents()
 	{
 		mImplementation->PollEvents();
+	}
+	void GameWindow::SetKeyPressedCallback(std::function<void(const KeyPressed&)>& callbackFunc)
+	{
+		mImplementation->SetKeyPressedCallback(callbackFunc);
+	}
+	void GameWindow::SetKeyReleasedCallback(std::function<void(const KeyReleased&)>& callbackFunc)
+	{
+		mImplementation->SetKeyReleasedCallback(callbackFunc);
+	}
+	void GameWindow::SetWindowCloseCallback(std::function<void()>& callBackFunc)
+	{
+		mImplementation->SetWindowCloseCallback(callBackFunc);
 	}
 }
