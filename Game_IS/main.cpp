@@ -11,18 +11,17 @@ public:
 	virtual void OnUpdate() override
 	{
 		//std::cout << "Meerkat running" << std::endl; 
-		Draw(x, y, mPic);
-		mPic.Bind();
-		//Draw(mUnit);
+		// Draw(x, y, mPic);
+		Draw(mUnit);
 	}
 
 	void OnKeyPress(const mk::KeyPressed& e) {
 		if (e.GetKeyCode() == MEERKAT_KEY_RIGHT)
-			x += 50;
-			// mUnit.UpdateXCoord(50);
+			//x += 50;
+			mUnit.UpdateXCoord(50);
 		else if (e.GetKeyCode() == MEERKAT_KEY_LEFT)
-			x += 50; 
-			// mUnit.UpdateXCoord(-50);
+			//x += 50; 
+			mUnit.UpdateXCoord(-50);
 	}
 
 private:

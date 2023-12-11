@@ -159,6 +159,11 @@ namespace mk {
 	void MeerkatApp<T>::Draw(int x, int y, Picture& pic) {
 		mRenderer.Draw(x, y, pic);
 	}
+
+	template<typename T>
+	void MeerkatApp<T>::Draw(Unit& item) {
+		mRenderer.Draw(item.GetXCoord(), item.GetYCoord(), item.mImage);
+	}
 	
 
 	template<typename T>

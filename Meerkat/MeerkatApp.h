@@ -19,6 +19,7 @@ namespace mk {
 		virtual void OnUpdate();
 
 		void Draw(int x, int y, Picture& pic); 
+		void Draw(Unit& item);
 
 		void SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc);
 		void SetKeyReleasedCallback(std::function<void(const KeyReleased&)> callbackFunc);
