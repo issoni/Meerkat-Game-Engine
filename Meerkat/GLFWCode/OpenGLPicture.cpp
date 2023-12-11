@@ -14,10 +14,10 @@ namespace mk {
 	OpenGLPicture::OpenGLPicture(const std::string& file)
 	{
 		glGenTextures(1, &mTex);
-
+		glBindTexture(GL_TEXTURE_2D, mTex);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+		
 		int nrChannels; 
 		stbi_set_flip_vertically_on_load(true);
 		unsigned char* data = stbi_load(file.c_str(), &mWidth, &mHeight, &nrChannels, 0); 
@@ -29,15 +29,18 @@ namespace mk {
 			MK_ERROR("Failed to load a picture from the file!");
 		}
 		stbi_image_free(data);
+
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	OpenGLPicture::OpenGLPicture(std::string&& file)
 	{
 		glGenTextures(1, &mTex);
-
+		glBindTexture(GL_TEXTURE_2D, mTex);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+		
 		int nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 		unsigned char* data = stbi_load(std::move(file.c_str()), &mWidth, &mHeight, &nrChannels, 0);
@@ -49,6 +52,7 @@ namespace mk {
 			MK_ERROR("Failed to load a picture from the file!");
 		}
 		stbi_image_free(data);
+
 	}
 
 	OpenGLPicture::~OpenGLPicture()
