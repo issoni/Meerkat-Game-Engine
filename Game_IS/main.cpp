@@ -22,6 +22,12 @@ public:
 		else if (e.GetKeyCode() == MEERKAT_KEY_LEFT)
 			//x += 50; 
 			mUnit.UpdateXCoord(-50);
+		else if (e.GetKeyCode() == MEERKAT_KEY_UP)
+			//x += 50; 
+			mUnit.UpdateYCoord(50);
+		else if (e.GetKeyCode() == MEERKAT_KEY_DOWN)
+			//x += 50; 
+			mUnit.UpdateYCoord(-50);
 	}
 
 private:
