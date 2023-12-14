@@ -9,7 +9,7 @@ namespace mk {
 	class MEERKAT_API Picture {
 	public:
 		Picture(const std::string& file);
-		//Picture(std::string&& file);
+		Picture(std::string&& file);
 
 		void Bind(); 
 
