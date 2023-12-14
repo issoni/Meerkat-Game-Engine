@@ -69,4 +69,12 @@ namespace mk {
 
 	}
 
+	void Unit::SetStartDelay(int delay) {
+		mStartDelay = delay;
+	}
+
+	int Unit::GetStartDelay() const {
+		return mStartDelay;
+	}
+
 }

@@ -1,41 +1,81 @@
 #include"Meerkat.h"
 
-#include<iostream>
+#include <iostream>
+#include <vector>
+#include <random>
 
 class MyGame : public mk::MeerkatApp<MyGame> {
 public:
 	MyGame() {
 		SetKeyPressedCallback([this](const mk::KeyPressed& e) {OnKeyPress(e); });
+		mRenderer.Init();
+		InitializeRocks();
 	}
 
 	virtual void OnUpdate() override
 	{
-		//std::cout << "Meerkat running" << std::endl; 
-		// Draw(x, y, mPic);
-		Draw(mUnit);
+		if (endGame) {
+			mRenderer.Clear();
+			gameOver.SetCoords(250, 250);
+			Draw(gameOver);
+			return;
+		}
+
+		timer++;
+
+		int delayIncrement = 50;  
+		for (size_t i = 0; i < rocks.size(); ++i) {
+			if (timer > (i * delayIncrement)) {
+				int rockSpeed = 5;
+				rocks[i].UpdateYCoord(-rockSpeed);
+
+				if (mk::UnitsOverlap(indianaJones, rocks[i])) {
+					endGame = true;
+					break;
+				}
+			}
+		}
+
+		if (!endGame) {
+			mRenderer.Clear();
+			Draw(indianaJones);
+			for (auto& rock : rocks) {
+				Draw(rock);
+			}
+		}
 	}
 
 	void OnKeyPress(const mk::KeyPressed& e) {
-		if (e.GetKeyCode() == MEERKAT_KEY_RIGHT)
-			//x += 50;
-			mUnit.UpdateXCoord(50);
-		else if (e.GetKeyCode() == MEERKAT_KEY_LEFT)
-			//x += 50; 
-			mUnit.UpdateXCoord(-50);
-		else if (e.GetKeyCode() == MEERKAT_KEY_UP)
-			//x += 50; 
-			mUnit.UpdateYCoord(50);
-		else if (e.GetKeyCode() == MEERKAT_KEY_DOWN)
-			//x += 50; 
-			mUnit.UpdateYCoord(-50);
+		int moveDistance = 10;
+		if (e.GetKeyCode() == MEERKAT_KEY_LEFT) {
+			indianaJones.UpdateXCoord(-moveDistance);
+		}
+		else if (e.GetKeyCode() == MEERKAT_KEY_RIGHT) {
+			indianaJones.UpdateXCoord(moveDistance);
+		}
 	}
 
-private:
-	mk::Picture mPic{ "../Assets/Pictures/test.png" }; 
-	mk::Unit mUnit{ "../Assets/Pictures/test.png", 100, 500 };
 
-	int x{ 100 };
-	int y{ 100 };
+private:
+	mk::Unit indianaJones{ "../Assets/Pictures/jones.png", 50, 100 };
+	std::vector<mk::Unit> rocks;
+	long timer{ 0 };
+	bool endGame{ false };
+	mk::Unit gameOver{ "../Assets/Pictures/gameOver.png", 500, 500 };
+	mk::Renderer mRenderer;
+	std::mt19937 ran{ std::random_device{}() };
+
+
+	void InitializeRocks() {
+		int startY = 800;  
+		std::uniform_int_distribution<int> dist(0, 800); 
+
+		for (int i = 0; i < 100; ++i) {
+			int randomX = dist(ran); 
+			rocks.emplace_back("../Assets/Pictures/rock.png", randomX, startY);
+			startY += 50;  
+		}
+	}
 };
 
 MEERKAT_APPLICATION_START(MyGame);
