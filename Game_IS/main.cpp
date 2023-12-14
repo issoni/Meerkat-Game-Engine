@@ -61,7 +61,7 @@ private:
 	std::vector<mk::Unit> rocks;
 	long timer{ 0 };
 	bool endGame{ false };
-	mk::Unit gameOver{ "../Assets/Pictures/gameOver.png", 500, 500 };
+	mk::Unit gameOver{ "../Assets/Pictures/gameover.png", 300, 300 };
 	mk::Renderer mRenderer;
 	std::mt19937 ran{ std::random_device{}() };
 
