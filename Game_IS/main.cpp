@@ -4,6 +4,7 @@
 #include <vector>
 #include <random>
 
+
 class MyGame : public mk::MeerkatApp<MyGame> {
 public:
 	MyGame() {
@@ -23,10 +24,14 @@ public:
 
 		timer++;
 
-		int delayIncrement = 50;  
+		int maxRockSpeed = 10;  
+		int speedIncrease = 100;
 		for (size_t i = 0; i < rocks.size(); ++i) {
-			if (timer > (i * delayIncrement)) {
-				int rockSpeed = 5;
+			if (timer > (i * 50)) {
+				int rockSpeed = timer / speedIncrease;
+				if (rockSpeed > maxRockSpeed) {
+					rockSpeed = maxRockSpeed;  
+				}
 				rocks[i].UpdateYCoord(-rockSpeed);
 
 				if (mk::UnitsOverlap(indianaJones, rocks[i])) {
