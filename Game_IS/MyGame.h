@@ -1,19 +1,24 @@
 #pragma once
-#include"Meerkat.h"
-#include<iostream>
+#include "Meerkat.h"
+#include <vector>
+#include <random>
+#include <iostream>
 
 class MyGame : public mk::MeerkatApp<MyGame> {
 public:
-	MyGame();
-	void OnUpdate() override; 
-	void OnKeyPress(const mk::KeyPressed& e);
+    MyGame();
+    virtual void OnUpdate() override;
+
 private:
+    void OnKeyPress(const mk::KeyPressed& e);
+    void InitializeRocks();
 
-	mk::Unit indianaJones{ "../Assets/Pictures/jones.png", 100, 500 };
-	mk::Unit rocks{ "../Assets/Pictures/rock.png", 100, 500 };
-	long timer{ 0 };
-	bool endGame{ false };
-	mk::Unit gameOver{ "../Assets/Pictures/gameover.jpg", 100, 500 };
-
-
+    mk::Unit indianaJones{ "../Assets/Pictures/jones.png", 50, 100 };
+    std::vector<mk::Unit> rocks;
+    mk::Unit bg{ "../Assets/Pictures/cave.png", 0, 0 };
+    mk::Unit gameOver{ "../Assets/Pictures/over.png", 320, 250 };
+    mk::Renderer mRenderer;
+    std::mt19937 ran{ std::random_device{}() };
+    long timer{ 0 };
+    bool endGame{ false };
 };
