@@ -15,8 +15,11 @@ public:
 
 	virtual void OnUpdate() override
 	{
+		mRenderer.Clear();
+
+		Draw(bg);
+
 		if (endGame) {
-			mRenderer.Clear();
 			gameOver.SetCoords(250, 250);
 			Draw(gameOver);
 			return;
@@ -42,7 +45,6 @@ public:
 		}
 
 		if (!endGame) {
-			mRenderer.Clear();
 			Draw(indianaJones);
 			for (auto& rock : rocks) {
 				Draw(rock);
@@ -64,6 +66,7 @@ public:
 private:
 	mk::Unit indianaJones{ "../Assets/Pictures/jones.png", 50, 100 };
 	std::vector<mk::Unit> rocks;
+	mk::Unit bg{ "../Assets/Pictures/cave.png", 0, 0 };
 	long timer{ 0 };
 	bool endGame{ false };
 	mk::Unit gameOver{ "../Assets/Pictures/gameover.png", 300, 300 };
