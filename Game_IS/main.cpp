@@ -20,7 +20,7 @@ public:
 		Draw(bg);
 
 		if (endGame) {
-			gameOver.SetCoords(250, 250);
+			gameOver.SetCoords(320, 250);
 			Draw(gameOver);
 			return;
 		}
@@ -69,7 +69,7 @@ private:
 	mk::Unit bg{ "../Assets/Pictures/cave.png", 0, 0 };
 	long timer{ 0 };
 	bool endGame{ false };
-	mk::Unit gameOver{ "../Assets/Pictures/gameover.png", 300, 300 };
+	mk::Unit gameOver{ "../Assets/Pictures/over.png", 300, 300 };
 	mk::Renderer mRenderer;
 	std::mt19937 ran{ std::random_device{}() };
 
