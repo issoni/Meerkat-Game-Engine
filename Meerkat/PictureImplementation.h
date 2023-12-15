@@ -1,7 +1,5 @@
 #pragma once
 
-//#include "Picture.h"
-
 namespace mk {
 	class PictureImplementation {
 	public:

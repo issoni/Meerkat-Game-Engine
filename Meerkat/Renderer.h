@@ -10,11 +10,8 @@ namespace mk {
 	class MEERKAT_API Renderer {
 	public:
 		Renderer();
-
 		void Init();
-
 		void Draw(int x, int y, Picture& pic);
-
 		void Clear(); 
 
 	private:

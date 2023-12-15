@@ -62,7 +62,7 @@ namespace mk {
 	}
 
 	void OpenGLRenderer::Clear() {
-		glClearColor(0.5f, 0.3f, 0.1f, 0.0f); // brown bg
+		glClearColor(0.5f, 0.3f, 0.1f, 0.0f); // Default brown background
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 }

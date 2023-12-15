@@ -12,7 +12,6 @@ mk::Picture::Picture(const std::string& file) {
 #endif
 }
 
-
 mk::Picture::Picture(std::string&& file)
 {
 #ifdef MEERKAT_MSCPP
@@ -23,7 +22,6 @@ mk::Picture::Picture(std::string&& file)
 	mImplementation = std::unique_ptr<PictureImplementation>{ new OpenGLPicture(std::move(file)) };
 #endif
 }
-
 
 void mk::Picture::Bind()
 {

@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include"PictureImplementation.h"
 
 namespace mk {
@@ -17,6 +16,5 @@ namespace mk {
 		unsigned int mTex; 
 		int mWidth{ 0 };
 		int mHeight{ 0 };
-		// int nrChannels{ 0 };
 	};
 }

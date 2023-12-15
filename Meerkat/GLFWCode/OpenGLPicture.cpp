@@ -29,9 +29,6 @@ namespace mk {
 			MK_ERROR("Failed to load a picture from the file!");
 		}
 		stbi_image_free(data);
-
-		//glEnable(GL_BLEND);
-		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	OpenGLPicture::OpenGLPicture(std::string&& file)
@@ -52,7 +49,6 @@ namespace mk {
 			MK_ERROR("Failed to load a picture from the file!");
 		}
 		stbi_image_free(data);
-
 	}
 
 	OpenGLPicture::~OpenGLPicture()

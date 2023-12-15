@@ -3,14 +3,10 @@
 
 namespace mk {
 	Unit::Unit(const std::string& image, int x, int y) :
-		mImage(image), mXPosition(x), mYPosition(y) 
-	{
-	}
+		mImage(image), mXPosition(x), mYPosition(y) {}
 
 	Unit::Unit(std::string&& image, int x, int y) :
-		mImage(std::move(image)), mXPosition(x), mYPosition(y)
-	{
-	}
+		mImage(std::move(image)), mXPosition(x), mYPosition(y) {}
 
 	int Unit::GetWidth() const
 	{
@@ -46,7 +42,6 @@ namespace mk {
 	void Unit::UpdateYCoord(int amount)
 	{
 		mYPosition += amount;
-
 	}
 
 	bool UnitsOverlap(const Unit& a, const Unit& b)
@@ -66,7 +61,6 @@ namespace mk {
 		bool y_intersection{ (bot_a <= bot_b and bot_b <= top_a) or (bot_b <= bot_a and bot_a <= top_b) };
 
 		return x_intersection and y_intersection;
-
 	}
 
 }

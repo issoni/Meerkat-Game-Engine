@@ -4,13 +4,11 @@
 #include"GLFW/glfw3.h"
 
 #include "OpenGLShader.h"
-
 #include "../Utilities.h"
 
 namespace mk {
 	OpenGLShader::OpenGLShader(const std::string& vertexSF, const std::string& fragmentSF)
 	{
-		// might have to remove this
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			MK_ERROR("Failed to initialize GLAD");
 			return;
@@ -20,8 +18,6 @@ namespace mk {
 		const char* vertexShaderSource = vertexString.c_str();
 		std::string fragmentString{ ReadWholeFile(fragmentSF) };
 		const char* fragmentShaderSource = fragmentString.c_str();
-
-
 
 		unsigned int vertexShader; 
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);

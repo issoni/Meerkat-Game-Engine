@@ -21,7 +21,5 @@ namespace mk {
 		int mKeyCode;
 	};
 
-	class MEERKAT_API WindowClosed {
-
-	};
+	class MEERKAT_API WindowClosed {};
 }

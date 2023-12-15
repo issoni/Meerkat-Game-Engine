@@ -12,10 +12,9 @@ namespace mk {
 		Picture(std::string&& file);
 
 		void Bind(); 
-
 		int GetHeight() const;
-
 		int GetWidth() const;
+
 	private:
 		std::unique_ptr<PictureImplementation> mImplementation;
 	};

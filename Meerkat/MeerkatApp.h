@@ -33,11 +33,8 @@ namespace mk {
 		MeerkatApp();
 
 		inline static MeerkatApp* sInstance{ nullptr };
-
 		GameWindow mWindow;
-
 		Renderer mRenderer;
-
 		bool mShouldContinue{ true };
 
 		std::chrono::milliseconds mFrameDuration{ std::chrono::milliseconds{1000} / FPS };

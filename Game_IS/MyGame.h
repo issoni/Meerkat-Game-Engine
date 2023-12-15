@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Meerkat.h"
 #include <vector>
 #include <random>
@@ -19,6 +20,7 @@ private:
     mk::Unit gameOver{ "../Assets/Pictures/over.png", 320, 250 };
     mk::Renderer mRenderer;
     std::mt19937 ran{ std::random_device{}() };
+
     long timer{ 0 };
     bool endGame{ false };
 };

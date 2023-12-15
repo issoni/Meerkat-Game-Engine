@@ -10,6 +10,7 @@ namespace mk {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	}
+
 	void GLFWImplementation::Create(const std::string& name, int width, int height)
 	{
 		mWindow = glfwCreateWindow(width, height, "Game_IS", NULL, NULL);
@@ -19,8 +20,8 @@ namespace mk {
 			glfwTerminate();
 			return;
 		}
-		glfwMakeContextCurrent(mWindow);
 
+		glfwMakeContextCurrent(mWindow);
 		glfwSetWindowUserPointer(mWindow, &mCallbacks);
 
 		glfwSetKeyCallback(mWindow, [](GLFWwindow* window, int keycode, int scancode, int action, int mods) {
@@ -50,28 +51,34 @@ namespace mk {
 		glfwGetWindowSize(mWindow, &width, &height);
 		return height;
 	}
+
 	int GLFWImplementation::GetWidth() const
 	{
 		int width{ 0 }, height{ 0 };
 		glfwGetWindowSize(mWindow, &width, &height);
 		return width;
 	}
+
 	void GLFWImplementation::SwapBuffers()
 	{
 		glfwSwapBuffers(mWindow);
 	}
+
 	void GLFWImplementation::PollEvents()
 	{
 		glfwPollEvents();
 	}
+
 	void GLFWImplementation::SetKeyPressedCallback(std::function<void(const KeyPressed&)>& callbackFunc)
 	{
 		mCallbacks.keyPressedFunc = callbackFunc;
 	}
+
 	void GLFWImplementation::SetKeyReleasedCallback(std::function<void(const KeyReleased&)>& callbackFunc)
 	{
 		mCallbacks.keyReleasedFunc = callbackFunc;
 	}
+
 	void GLFWImplementation::SetWindowCloseCallback(std::function<void()>& callbackFunc)
 	{
 		mCallbacks.windowCloseFunc = callbackFunc;
