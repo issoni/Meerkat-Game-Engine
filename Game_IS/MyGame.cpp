@@ -54,10 +54,10 @@ void MyGame::OnUpdate() {
 void MyGame::OnKeyPress(const mk::KeyPressed& e) {
 	// Movement 
 	if (e.GetKeyCode() == MEERKAT_KEY_LEFT) {
-		indianaJones.UpdateXCoord(-5);
+		indianaJones.UpdateXCoord(-6);
 	}
 	else if (e.GetKeyCode() == MEERKAT_KEY_RIGHT) {
-		indianaJones.UpdateXCoord(5);
+		indianaJones.UpdateXCoord(6);
 	}
 }
 
