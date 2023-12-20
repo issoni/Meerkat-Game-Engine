@@ -7,8 +7,10 @@ Rules:
 
 Unique features: 
 - Rocks start at random positions on top and outside of the window screen 
-- Rocks fall at a slow pace at the beginning, but at a greater quantity 
-- As time progresses, the number of rocks decrease but the falling speed increases 
+- Rocks fall at a slow pace at the beginning, and at a greater quantity 
+- As time progresses, the number of rocks decrease and the falling speed increases 
 - Our character Indiana Jones moves at a tender speed - to increase the difficulty of the game as time goes on 
-- If our character Indiana Jones collides/overlaps with one of the rocks, game is over... 
+- Indiana also moves smoothly without having to press keys over and over again
+- Indiana can't go off-screen! 
+- And, if our character Indiana Jones collides/overlaps with one of the rocks, game is over... 
 - A cave background for better aesthetics
